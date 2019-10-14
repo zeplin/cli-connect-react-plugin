@@ -1,7 +1,7 @@
 {
-  "name": "@zeplin/cli-link-react-processor",
+  "name": "@zeplin/cli-link-react-plugin",
   "version": "1.0.0",
-  "description": "Zeplin CLI Link - React Component Processor",
+  "description": "Zeplin CLI Link - React Plugin",
   "main": "./dist/src/index.js",
   "scripts": {
     "test": "jest",
@@ -13,17 +13,24 @@
     }
   },
   "devDependencies": {
-    "@zeplin/cli": "1.0.0",
+    "@types/fs-extra": "^8.0.0",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
+    "@types/pug": "^2.0.4",
     "@typescript-eslint/eslint-plugin": "^2.3.0",
     "@typescript-eslint/parser": "^2.3.0",
+    "@zeplin/cli": "file:/Users/yuqu/ZeplinProjects/cli",
+    "@zeplin/eslint-config": "^2.2.0",
     "eslint": "^6.4.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.3.0",
     "typescript": "^3.6.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "react-docgen": "^4.1.1"
+  }
 }
