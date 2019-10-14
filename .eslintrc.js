@@ -18,7 +18,9 @@ module.exports = {
     plugins: ["@typescript-eslint"],
     settings: {
         "import/resolver": {
-            typescript: { directory: "./tsconfig.json" },
+            typescript: {
+                directory: "./tsconfig.json"
+            },
         }
     },
     rules: {
