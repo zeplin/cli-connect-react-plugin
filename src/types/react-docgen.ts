@@ -26,5 +26,6 @@ declare module "react-docgen" {
         computed: boolean;
     }
 
-    export function parse(file: Buffer): ComponentDoc;
+    export function parse(file: Buffer, resolver: () => void): ComponentDoc;
+    export function findAllComponentDefinitions(): void;
 }

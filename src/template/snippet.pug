@@ -1,0 +1,40 @@
+mixin propertyValue(type)
+    if type.name === "arrayOf" || type.name === "objectOf"
+        | #{type.name}[!{type.value.name}]
+    else if type.name === "instanceOf"
+        | instanceOf(!{type.value})
+    else
+        | #{type.name}
+
+mixin propertyValues(props)
+    - var list = props.length ? props : [props]
+    each value, index in list
+        +propertyValue(value)
+        | #{(index < list.length - 1) ? '|' : ''}
+
+mixin property(name, value)
+    |   #{name}={
+    +propertyValues(value)
+    | }
+
+- var hasChildren = false;
+| <#{displayName}
+|
+each prop, name in props
+    if name === "children"
+        - var hasChildren = true;
+    else if prop.type.name === "union"
+        |   #{name}={union[
+        +propertyValues(prop.type.value)
+        | }]
+    else
+        +property(name, prop.type)
+    |
+    |
+if hasChildren
+    | />
+else
+    | >
+    | {children}
+    | </#{displayName}>
+
