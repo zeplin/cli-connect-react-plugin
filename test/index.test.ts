@@ -28,5 +28,7 @@ describe("ReactLinkProcessor", () => {
         expect(componentCode.snippet).toMatch("customProp={custom}");
         expect(componentCode.snippet).toMatch("customArrayProp={arrayOf[custom]}");
         expect(componentCode.snippet).toMatch("customObjectOfProp={objectOf[custom]}");
+
+        expect(componentCode.description).toMatch("Component description.");
     });
 });
