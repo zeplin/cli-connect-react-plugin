@@ -1,10 +1,6 @@
 import Processor from "../src";
 
 describe("ReactLinkProcessor", () => {
-    beforeEach(() => {
-        jest.restoreAllMocks();
-    });
-
     test("MyComponent.jsx snippet creation", async () => {
         const processor = new Processor();
 
@@ -34,4 +30,3 @@ describe("ReactLinkProcessor", () => {
         expect(componentCode.snippet).toMatch("customObjectOfProp={objectOf[custom]}");
     });
 });
-
