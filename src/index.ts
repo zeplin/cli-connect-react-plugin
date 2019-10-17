@@ -1,20 +1,21 @@
 import { LinkProcessor, ComponentConfig, ComponentCode } from "@zeplin/cli";
 import path from "path";
+import pug from "pug";
 import { readFile } from "fs-extra";
-import { parse } from "react-docgen";
-import { generateSnippet } from "./snippet";
+import { parse, findAllComponentDefinitions } from "react-docgen";
 
 export default class implements LinkProcessor {
     lang = "React";
     supportedFileExtensions = [".js", ".jsx"];
 
+    generateSnippet = pug.compileFile(path.join(__dirname, "template/snippet.pug"));
+
     async process(context: ComponentConfig): Promise<ComponentCode> {
         const file = await readFile(path.resolve(context.path));
 
-        const reactDocs = parse(file);
+        const reactDocs = parse(file, findAllComponentDefinitions);
 
-        const snippet = generateSnippet(reactDocs);
-
+        const snippet = this.generateSnippet(reactDocs);
         // TODO maybe generate a markdown propTable as description?
         const { description } = reactDocs;
 
