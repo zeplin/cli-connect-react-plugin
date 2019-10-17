@@ -5,7 +5,7 @@ describe("ReactLinkProcessor", () => {
         jest.restoreAllMocks();
     });
 
-    it.only("asd single property React component", async () => {
+    test("MyComponent.jsx snippet creation", async () => {
         const processor = new Processor();
 
         const componentCode = await processor.process({ path: "test/MyComponent.jsx", zeplinNames: [] });
