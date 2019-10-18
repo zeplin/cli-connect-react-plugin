@@ -10,6 +10,7 @@ class MyComponent extends React.Component {
 }
 // All examples of propTypes listed official documentation
 MyComponent.propTypes = {
+    children: PropTypes.element.isRequired,
     optionalArray: PropTypes.array,
     optionalBool: PropTypes.bool,
     optionalFunc: PropTypes.func,
