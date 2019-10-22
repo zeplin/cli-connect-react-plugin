@@ -3,6 +3,7 @@
 exports[`ReactLinkProcessor MyComponent.jsx snippet creation 1`] = `
 Object {
   "description": "Component description.",
+  "lang": "jsx",
   "snippet": "<MyComponent
   optionalArray={array}
   optionalBool={bool}
