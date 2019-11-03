@@ -2,10 +2,12 @@
   "name": "@zeplin/cli-link-react-plugin",
   "version": "1.0.0",
   "description": "Zeplin CLI Link - React Plugin",
-  "main": "./dist/src/index.js",
+  "main": "./dist/index",
   "scripts": {
     "test": "jest",
-    "lint": "eslint --ext .js,.ts ."
+    "build": "tsc && copyfiles -u 1 src/template/** dist/",
+    "lint": "eslint --ext .js,.ts .",
+    "prepare": "npm run build"
   },
   "husky": {
     "hooks": {
@@ -21,6 +23,7 @@
     "@typescript-eslint/parser": "^2.3.0",
     "@zeplin/cli": "file:/Users/yuqu/ZeplinProjects/cli",
     "@zeplin/eslint-config": "^2.2.0",
+    "copyfiles": "^2.1.1",
     "eslint": "^6.4.0",
     "eslint-import-resolver-typescript": "^2.0.0",
     "husky": "^3.0.5",
