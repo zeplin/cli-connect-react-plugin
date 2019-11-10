@@ -1,10 +1,10 @@
-import { ZeplinLinkPlugin, ComponentConfig, ComponentData, PrismLang } from "@zeplin/cli";
+import { ConnectPlugin, ComponentConfig, ComponentData, PrismLang } from "@zeplin/cli";
 import path from "path";
 import pug from "pug";
 import { readFile } from "fs-extra";
 import { parse } from "react-docgen";
 
-export default class implements ZeplinLinkPlugin {
+export default class implements ConnectPlugin {
     supportedFileExtensions = [".js", ".jsx"];
 
     generateSnippet = pug.compileFile(path.join(__dirname, "template/base.pug"));
