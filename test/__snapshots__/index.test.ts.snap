@@ -1,6 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReactLinkProcessor MyComponent.jsx snippet creation 1`] = `
+exports[`Connected Components React Plugin Component.jsx snippet creation 1`] = `
+Object {
+  "description": "Component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent />",
+}
+`;
+
+exports[`Connected Components React Plugin ComponentWithChildren.jsx snippet creation 1`] = `
+Object {
+  "description": "Component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent>
+{children}
+</MyComponent>",
+}
+`;
+
+exports[`Connected Components React Plugin ComponentWithChildrenAndProps.jsx snippet creation 1`] = `
 Object {
   "description": "Component description.",
   "lang": "jsx",
@@ -29,5 +47,35 @@ Object {
   customObjectOfProp={objectOf[custom]}>
 {children}
 </MyComponent>",
+}
+`;
+
+exports[`Connected Components React Plugin ComponentWithProps.jsx snippet creation 1`] = `
+Object {
+  "description": "Component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent
+  optionalArray={array}
+  optionalBool={bool}
+  optionalFunc={func}
+  optionalNumber={number}
+  optionalObject={object}
+  optionalString={string}
+  optionalSymbol={symbol}
+  optionalNode={node}
+  optionalElement={element}
+  optionalElementType={elementType}
+  optionalFoo={instanceOf(Foo)}
+  optionalEnum={enum}
+  optionalUnion={union[string|number|instanceOf(Foo)}]
+  optionalArrayOf={arrayOf[number]}
+  optionalObjectOf={objectOf[number]}
+  optionalObjectWithShape={shape}
+  optionalObjectWithStrictShape={exact}
+  requiredFunc={func}
+  requiredAny={any}
+  customProp={custom}
+  customArrayProp={arrayOf[custom]}
+  customObjectOfProp={objectOf[custom]} />",
 }
 `;
