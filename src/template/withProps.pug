@@ -1,0 +1,14 @@
+extends base
+
+block snippet
+    - var hasChildren = false;
+    | <#{displayName}
+    |
+    each key, index in Object.keys(props)
+        if key !== "children"
+            +property(key, props[key].type)
+            if index !== (Object.keys(props).length -1)
+                |
+                |
+    block suffix
+        |  />
