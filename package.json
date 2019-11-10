@@ -1,6 +1,6 @@
 {
   "name": "@zeplin/cli-link-react-plugin",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Zeplin CLI Link - React Plugin",
   "main": "./dist/index",
   "scripts": {
