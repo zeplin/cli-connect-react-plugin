@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connected Components React Plugin - TypeScript TSComponent.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent />",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript TSComponentWithChildren.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent>
+  {children}
+</MyComponent>",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript TSComponentWithChildrenAndProps.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent
+  message={string}
+  count={number}
+  disabled={boolean}
+  names={string[]}
+  status={\\"waiting\\" | \\"success\\"}
+  obj={object}
+  obj2={{}}
+  obj3={{
+  id: string;
+  title: string;
+}}
+  objArr={{
+  id: string;
+  title: string;
+}[]}
+  onSomething={Function}
+  onClick={() => void}
+  onChange={(id: number) => void}
+  optional={OptionalType}>
+  {children}
+</MyComponent>",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript TSComponentWithProps.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent
+  message={string}
+  count={number}
+  disabled={boolean}
+  names={string[]}
+  status={\\"waiting\\" | \\"success\\"}
+  obj={object}
+  obj2={{}}
+  obj3={{
+  id: string;
+  title: string;
+}}
+  objArr={{
+  id: string;
+  title: string;
+}[]}
+  onSomething={Function}
+  onClick={() => void}
+  onChange={(id: number) => void}
+  optional={OptionalType} />",
+}
+`;
