@@ -2,47 +2,46 @@ import { ConnectPlugin, ComponentConfig, ComponentData, PrismLang } from "@zepli
 import path from "path";
 import pug from "pug";
 import { readFile } from "fs-extra";
-import { parse } from "react-docgen";
+import { parse, PreparedComponentDoc, PreparedProp } from "react-docgen";
 
 export default class implements ConnectPlugin {
-    supportedFileExtensions = [".js", ".jsx"];
+    supportedFileExtensions = [".js", ".jsx", ".ts", ".tsx"];
 
-    generateSnippet = pug.compileFile(path.join(__dirname, "template/base.pug"));
-    generateSnippetWithChildren = pug.compileFile(path.join(__dirname, "template/withChildren.pug"));
-    generateSnippetWithProps = pug.compileFile(path.join(__dirname, "template/withProps.pug"));
-    generateSnippetWithChildrenAndProps = pug.compileFile(path.join(__dirname, "template/withChildrenAndProps.pug"));
+    template = pug.compileFile(path.join(__dirname, "template/snippet.pug"));
 
     async process(context: ComponentConfig): Promise<ComponentData> {
         const file = await readFile(path.resolve(context.path));
 
-        const reactDocs = parse(file);
+        const rawReactDocs = parse(file, null, null, {
+            filename: path.resolve(context.path),
+            babelrc: false
+        });
+
+        const props: PreparedProp[] = [];
 
         let hasChildren = false;
-        let hasProps = false;
 
-        if (reactDocs.props) {
-            if (Object.keys(reactDocs.props).some(key => key === "children")) {
-                hasChildren = true;
-            }
+        if (rawReactDocs.props) {
+            const rawProps = rawReactDocs.props;
 
-            if (Object.keys(reactDocs.props).some(key => key !== "children")) {
-                hasProps = true;
-            }
+            hasChildren = !!rawProps.children;
+
+            Object.keys(rawProps)
+                .filter(name => name !== "children")
+                .forEach(name => {
+                    props.push({ name, value: rawProps[name] });
+                });
         }
 
-        let snippet;
-        if (hasChildren && hasProps) {
-            snippet = this.generateSnippetWithChildrenAndProps(reactDocs);
-        } else if (hasChildren) {
-            snippet = this.generateSnippetWithChildren(reactDocs);
-        } else if (hasProps) {
-            snippet = this.generateSnippetWithProps(reactDocs);
-        } else {
-            snippet = this.generateSnippet(reactDocs);
-        }
+        const snippet = this.generateSnippet({
+            description: rawReactDocs.description,
+            componentName: rawReactDocs.displayName,
+            props,
+            hasChildren
+        });
 
         // TODO maybe generate a markdown propTable as description?
-        const { description } = reactDocs;
+        const { description } = rawReactDocs;
 
         return { description, snippet, lang: PrismLang.ReactJSX };
     }
@@ -51,5 +50,10 @@ export default class implements ConnectPlugin {
         const fileExtension = path.extname(x.path);
 
         return this.supportedFileExtensions.includes(fileExtension);
+    }
+
+    private generateSnippet(preparedComponentDoc: PreparedComponentDoc): string {
+        console.log(JSON.stringify(preparedComponentDoc));
+        return this.template(preparedComponentDoc);
     }
 }

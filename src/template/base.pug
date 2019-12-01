@@ -3,11 +3,13 @@ mixin propertyValue(type)
         | #{type.name}[!{type.value.name}]
     else if type.name === "instanceOf"
         | instanceOf(!{type.value})
+    else if type.raw
+        | !{type.raw}
     else
         | #{type.name}
 
-mixin propertyValues(props)
-    - var list = props.length ? props : [props]
+mixin propertyValues(values)
+    - var list = values.length ? values : [values]
     each value, index in list
         +propertyValue(value)
         | #{(index < list.length - 1) ? '|' : ''}
@@ -22,5 +24,5 @@ mixin property(name, type)
         +propertyValues(type)
         | }
 
+
 block snippet
-    | <#{displayName} />

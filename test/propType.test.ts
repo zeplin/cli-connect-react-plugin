@@ -1,6 +1,6 @@
 import Plugin from "../src";
 
-describe("Connected Components React Plugin", () => {
+describe("Connected Components React Plugin - PropTypes", () => {
     test("Component.jsx snippet creation", async () => {
         const plugin = new Plugin();
 
@@ -46,6 +46,19 @@ describe("Connected Components React Plugin", () => {
         const componentCode = await processor.process(
             {
                 path: "test/samples/ComponentWithChildrenAndProps.jsx",
+                zeplinNames: []
+            }
+        );
+
+        expect(componentCode).toMatchSnapshot();
+    });
+
+    test.skip("FlowType.jsx snippet creation", async () => {
+        const processor = new Plugin();
+
+        const componentCode = await processor.process(
+            {
+                path: "test/samples/TSType.tsx",
                 zeplinNames: []
             }
         );
