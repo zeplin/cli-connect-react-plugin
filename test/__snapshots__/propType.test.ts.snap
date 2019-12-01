@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Connected Components React Plugin Component.jsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - PropTypes Component.jsx snippet creation 1`] = `
 Object {
   "description": "Component description.",
   "lang": "jsx",
@@ -8,17 +8,17 @@ Object {
 }
 `;
 
-exports[`Connected Components React Plugin ComponentWithChildren.jsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - PropTypes ComponentWithChildren.jsx snippet creation 1`] = `
 Object {
   "description": "Component description.",
   "lang": "jsx",
   "snippet": "<MyComponent>
-{children}
+  {children}
 </MyComponent>",
 }
 `;
 
-exports[`Connected Components React Plugin ComponentWithChildrenAndProps.jsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - PropTypes ComponentWithChildrenAndProps.jsx snippet creation 1`] = `
 Object {
   "description": "Component description.",
   "lang": "jsx",
@@ -42,15 +42,15 @@ Object {
   optionalObjectWithStrictShape={exact}
   requiredFunc={func}
   requiredAny={any}
-  customProp={custom}
+  customProp={() => {}}
   customArrayProp={arrayOf[custom]}
   customObjectOfProp={objectOf[custom]}>
-{children}
+  {children}
 </MyComponent>",
 }
 `;
 
-exports[`Connected Components React Plugin ComponentWithProps.jsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - PropTypes ComponentWithProps.jsx snippet creation 1`] = `
 Object {
   "description": "Component description.",
   "lang": "jsx",
@@ -74,7 +74,7 @@ Object {
   optionalObjectWithStrictShape={exact}
   requiredFunc={func}
   requiredAny={any}
-  customProp={custom}
+  customProp={() => {}}
   customArrayProp={arrayOf[custom]}
   customObjectOfProp={objectOf[custom]} />",
 }
