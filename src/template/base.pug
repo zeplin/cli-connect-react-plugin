@@ -14,15 +14,27 @@ mixin propertyValues(values)
         +propertyValue(value)
         | #{(index < list.length - 1) ? '|' : ''}
 
-mixin property(name, type)
-    if type.name === "union"
+mixin propType(name, propType)
+    if propType.name === "union"
         |   #{name}={union[
-        +propertyValues(type.value)
+        +propertyValues(propType.value)
         | }]
     else
         |   #{name}={
-        +propertyValues(type)
+        +propertyValue(propType)
         | }
 
+mixin tsOrFlowType(name, type)
+        |   #{name}={
+        +propertyValue(type)
+        | }
+
+mixin property(prop)
+    if prop.value.flowType
+        +tsOrFlowType(prop.name, prop.value.flowType)
+    else if prop.value.tsType
+        +tsOrFlowType(prop.name, prop.value.tsType)
+    else
+        +propType(prop.name, prop.value.type)
 
 block snippet
