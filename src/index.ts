@@ -53,7 +53,6 @@ export default class implements ConnectPlugin {
     }
 
     private generateSnippet(preparedComponentDoc: PreparedComponentDoc): string {
-        console.log(JSON.stringify(preparedComponentDoc));
         return this.template(preparedComponentDoc);
     }
 }
