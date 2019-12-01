@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connected Components React Plugin - Flow FlowComponent.jsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent />",
+}
+`;
+
+exports[`Connected Components React Plugin - Flow FlowComponentWithChildren.jsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent>
+  {children}
+</MyComponent>",
+}
+`;
+
+exports[`Connected Components React Plugin - Flow FlowComponentWithChildrenAndProps.jsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent
+  primitive={number}
+  literalsAndUnion={'string' | 'otherstring' | number}
+  arr={Array<any>}
+  func={(value: string) => void}
+  noParameterName={string => void}
+  obj={{ subvalue: boolean }}>
+  {children}
+</MyComponent>",
+}
+`;
+
+exports[`Connected Components React Plugin - Flow FlowComponentWithProps.jsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent
+  primitive={number}
+  literalsAndUnion={'string' | 'otherstring' | number}
+  arr={Array<any>}
+  func={(value: string) => void}
+  noParameterName={string => void}
+  obj={{ subvalue: boolean }} />",
+}
+`;
