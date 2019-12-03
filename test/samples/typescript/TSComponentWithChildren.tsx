@@ -7,7 +7,7 @@ type Props = {
 /**
  * General component description.
  */
-export default class MyComponent extends Component<Props, {}> {
+export default class MyComponent extends React.Component<Props, {}> {
   props: Props;
 
   render() {

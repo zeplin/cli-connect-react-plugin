@@ -3,7 +3,7 @@ import React from 'react';
 /**
  * General component description.
  */
-export default class MyComponent extends Component<{}, {}> {
+export default class MyComponent extends React.Component<{}, {}> {
 
   render() {
     // ...
