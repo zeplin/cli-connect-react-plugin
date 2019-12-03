@@ -2,7 +2,7 @@ import { ConnectPlugin, ComponentConfig, ComponentData, PrismLang } from "@zepli
 import path from "path";
 import pug from "pug";
 import { readFile } from "fs-extra";
-import { parse, PreparedComponentDoc, PreparedProp } from "react-docgen";
+import { parse, PreparedComponentDoc } from "react-docgen";
 
 export default class implements ConnectPlugin {
     supportedFileExtensions = [".js", ".jsx", ".ts", ".tsx"];
@@ -17,21 +17,13 @@ export default class implements ConnectPlugin {
             babelrc: false
         });
 
-        const props: PreparedProp[] = [];
+        const rawProps = rawReactDocs.props || {};
 
-        let hasChildren = false;
+        const props = Object.keys(rawProps)
+            .filter(name => name !== "children")
+            .map(name => ({ name, value: rawProps[name] }));
 
-        if (rawReactDocs.props) {
-            const rawProps = rawReactDocs.props;
-
-            hasChildren = !!rawProps.children;
-
-            Object.keys(rawProps)
-                .filter(name => name !== "children")
-                .forEach(name => {
-                    props.push({ name, value: rawProps[name] });
-                });
-        }
+        const hasChildren = !!rawProps.children;
 
         const snippet = this.generateSnippet({
             description: rawReactDocs.description,
