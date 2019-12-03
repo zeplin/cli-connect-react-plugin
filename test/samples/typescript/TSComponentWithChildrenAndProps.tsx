@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+interface OptionalType {};
+
 type Props = {
   children?: React.ReactNode;
   message: string;
@@ -18,16 +20,16 @@ type Props = {
     title: string;
   }[];
   onSomething: Function;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  hele(event: React.MouseEvent<HTMLButtonElement>): void;
   onChange: (id: number) => void;
-  onClick(event: React.MouseEvent<HTMLButtonElement>): void;
   optional?: OptionalType;
 };
 
 /**
  * General component description.
  */
-export default class MyComponent extends Component<Props, {}> {
+export default class MyComponent extends React.Component<Props, {}> {
   props: Props;
 
   render() {
