@@ -6,6 +6,7 @@ import { parse, PreparedComponentDoc } from "react-docgen";
 
 export default class implements ConnectPlugin {
     supportedFileExtensions = [".js", ".jsx", ".ts", ".tsx"];
+    tsExtensions = [".ts", ".tsx"];
 
     template = pug.compileFile(path.join(__dirname, "template/snippet.pug"));
 
@@ -34,8 +35,11 @@ export default class implements ConnectPlugin {
 
         // TODO maybe generate a markdown propTable as description?
         const { description } = rawReactDocs;
+        const lang = this.tsExtensions.includes(path.extname(context.path))
+            ? PrismLang.ReactTSX
+            : PrismLang.ReactJSX;
 
-        return { description, snippet, lang: PrismLang.ReactJSX };
+        return { description, snippet, lang };
     }
 
     supports(x: ComponentConfig): boolean {
