@@ -53,12 +53,12 @@ describe("Connected Components React Plugin - PropTypes", () => {
         expect(componentCode).toMatchSnapshot();
     });
 
-    test.skip("FlowType.jsx snippet creation", async () => {
+    test("ComponentWithMemoization.jsx snippet creation", async () => {
         const processor = new Plugin();
 
         const componentCode = await processor.process(
             {
-                path: "test/samples/TSType.tsx",
+                path: "test/samples/ComponentWithMemoization.jsx",
                 zeplinNames: []
             }
         );
