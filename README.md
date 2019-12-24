@@ -15,5 +15,5 @@ npm install -g @zeplin/cli @zeplin/cli-connect-react-plugin
 Execute connect command on Zeplin CLI using -p option to include the plugin into the connect operation.
 
 ```
-zeplin connect -p @zeplin/cli-connect-react-plugin -f components.json
+zeplin connect -p @zeplin/cli-connect-react-plugin
 ```
