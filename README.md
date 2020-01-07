@@ -18,6 +18,8 @@ Run CLI `connect` command using the plugin.
 zeplin connect -p @zeplin/cli-connect-react-plugin
 ```
 
+Zeplin CLI React Plugin uses [react-docgen](https://github.com/reactjs/react-docgen) to analyze and collect information from React components. For more details about the supported formats, see `react-docgen` [guidelines](https://github.com/reactjs/react-docgen#guidelines-for-default-resolvers-and-handlers).
+
 ## About Connected Components
 
 [Connected Components](https://blog.zeplin.io/introducing-connected-components-components-in-design-and-code-in-harmony-aa894ed5bd95) in Zeplin lets you access components in your codebase directly on designs in Zeplin, with links to Storybook, GitHub and any other source of documentation based on your workflow. 🧩
