@@ -1,19 +1,27 @@
-# Zeplin CLI Connected Components - React Plugin
+# Zeplin CLI React Plugin
 
-This plugin provides a processor to gather code snippets and descriptions from React components.
+[Zeplin CLI](https://github.com/zeplin/cli) plugin to generate descriptions and code snippets for React components.
 
-React Plugin uses [react-docgen](https://github.com/reactjs/react-docgen) to gather information about React components. Check [here](https://github.com/reactjs/react-docgen#guidelines-for-default-resolvers-and-handlers) to find out which types of components are supported by default.
+## Installation
+
+Install the plugin using npm.
+
+```sh
+npm install -g @zeplin/cli-connect-react-plugin
+```
 
 ## Usage
 
-Install this package along with @zeplin/cli npm package
+Run CLI `connect` command using the plugin.
 
-```
-npm install -g @zeplin/cli @zeplin/cli-connect-react-plugin
-```
-
-Execute connect command on Zeplin CLI using -p option to include the plugin into the connect operation.
-
-```
+```sh
 zeplin connect -p @zeplin/cli-connect-react-plugin
 ```
+
+Zeplin CLI React Plugin uses [react-docgen](https://github.com/reactjs/react-docgen) to analyze and collect information from React components. For more details about the supported formats, see `react-docgen` [guidelines](https://github.com/reactjs/react-docgen#guidelines-for-default-resolvers-and-handlers).
+
+## About Connected Components
+
+[Connected Components](https://blog.zeplin.io/introducing-connected-components-components-in-design-and-code-in-harmony-aa894ed5bd95) in Zeplin lets you access components in your codebase directly on designs in Zeplin, with links to Storybook, GitHub and any other source of documentation based on your workflow. 🧩
+
+[Zeplin CLI](https://github.com/zeplin/cli) uses plugins like this one to analyze component source code and publishes a high-level overview to be displayed in Zeplin.
