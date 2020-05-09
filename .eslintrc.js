@@ -12,15 +12,15 @@ module.exports = {
     ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
+        ecmaVersion: 2018,
+        sourceType: "module"
     },
     plugins: ["@typescript-eslint"],
     settings: {
         "import/resolver": {
             typescript: {
                 directory: "./tsconfig.json"
-            },
+            }
         }
     },
     rules: {
@@ -28,7 +28,7 @@ module.exports = {
         "arrow-body-style": ["error", "as-needed"],
         "no-process-exit": "off",
         "no-process-env": "off",
-        "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": true }],
+        "@typescript-eslint/no-explicit-any": ["error", { ignoreRestArgs: true }],
         "class-methods-use-this": "off"
     }
-}
+};
