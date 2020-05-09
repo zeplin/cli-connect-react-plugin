@@ -18,7 +18,7 @@ mixin propType(name, propType)
     if propType.name === "union"
         |   #{name}={union[
         +propertyValues(propType.value)
-        | }]
+        | ]}
     else
         |   #{name}={
         +propertyValue(propType)
