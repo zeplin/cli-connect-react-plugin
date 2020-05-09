@@ -22,6 +22,7 @@ export default class implements ConnectPlugin {
 
         const props = Object.keys(rawProps)
             .filter(name => name !== "children")
+            .filter(name => rawProps[name].type || rawProps[name].tsType || rawProps[name].flowType)
             .map(name => ({ name, value: rawProps[name] }));
 
         const hasChildren = !!rawProps.children;

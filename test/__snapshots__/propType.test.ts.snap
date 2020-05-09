@@ -35,7 +35,7 @@ Object {
   optionalElementType={elementType}
   optionalFoo={instanceOf(Foo)}
   optionalEnum={enum}
-  optionalUnion={union[string|number|instanceOf(Foo)}]
+  optionalUnion={union[string|number|instanceOf(Foo)]}
   optionalArrayOf={arrayOf[number]}
   optionalObjectOf={objectOf[number]}
   optionalObjectWithShape={shape}
@@ -67,7 +67,7 @@ Object {
   optionalElementType={elementType}
   optionalFoo={instanceOf(Foo)}
   optionalEnum={enum}
-  optionalUnion={union[string|number|instanceOf(Foo)}]
+  optionalUnion={union[string|number|instanceOf(Foo)]}
   optionalArrayOf={arrayOf[number]}
   optionalObjectOf={objectOf[number]}
   optionalObjectWithShape={shape}
@@ -99,7 +99,7 @@ Object {
   optionalElementType={elementType}
   optionalFoo={instanceOf(Foo)}
   optionalEnum={enum}
-  optionalUnion={union[string|number|instanceOf(Foo)}]
+  optionalUnion={union[string|number|instanceOf(Foo)]}
   optionalArrayOf={arrayOf[number]}
   optionalObjectOf={objectOf[number]}
   optionalObjectWithShape={shape}
