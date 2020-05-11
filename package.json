@@ -1,6 +1,6 @@
 {
   "name": "@zeplin/cli-connect-react-plugin",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Zeplin CLI Connected Components - React Plugin",
   "main": "./dist/index",
   "scripts": {
