@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, MouseEvent } from 'react';
 
 interface OptionalType {};
 
@@ -20,8 +20,8 @@ type Props = {
     title: string;
   }[];
   onSomething: Function;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  hele(event: React.MouseEvent<HTMLButtonElement>): void;
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+  hele(event: MouseEvent<HTMLButtonElement>): void;
   onChange: (id: number) => void;
   optional?: OptionalType;
 };
