@@ -7,7 +7,8 @@
     "test": "jest",
     "build": "tsc && copyfiles -u 1 src/template/** dist/",
     "lint": "eslint --ext .js,.ts .",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "preinstall": "npx npm-force-resolutions"
   },
   "husky": {
     "hooks": {
@@ -45,5 +46,8 @@
     "fs-extra": "^9.0.0",
     "pug": "^2.0.4",
     "react-docgen": "^5.3.0"
+  },
+  "resolutions": {
+    "ast-types": "^0.14.0"
   }
 }
