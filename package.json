@@ -7,8 +7,7 @@
     "test": "jest",
     "build": "tsc && copyfiles -u 1 src/template/** dist/",
     "lint": "eslint --ext .js,.ts .",
-    "prepare": "npm run build",
-    "preinstall": "npx npm-force-resolutions"
+    "prepare": "npm run build"
   },
   "husky": {
     "hooks": {
