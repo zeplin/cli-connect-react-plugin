@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connected Components React Plugin - Functional ComponentWithChildren.jsx snippet creation 1`] = `
+Object {
+  "description": "",
+  "lang": "jsx",
+  "snippet": "<MyComponent>
+  {children}
+</MyComponent>",
+}
+`;
+
+exports[`Connected Components React Plugin - Functional FunctionalComponents.jsx snippet creation 1`] = `
+Object {
+  "description": "",
+  "lang": "jsx",
+  "snippet": "<MyComponent />",
+}
+`;

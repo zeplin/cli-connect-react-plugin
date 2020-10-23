@@ -6,7 +6,7 @@ describe("Connected Components React Plugin - PropTypes", () => {
 
         const componentCode = await plugin.process(
             {
-                path: "test/samples/Component.jsx",
+                path: "test/samples/jsx-class/Component.jsx",
                 zeplinNames: []
             }
         );
@@ -19,7 +19,7 @@ describe("Connected Components React Plugin - PropTypes", () => {
 
         const componentCode = await processor.process(
             {
-                path: "test/samples/ComponentWithChildren.jsx",
+                path: "test/samples/jsx-class/ComponentWithChildren.jsx",
                 zeplinNames: []
             }
         );
@@ -32,7 +32,7 @@ describe("Connected Components React Plugin - PropTypes", () => {
 
         const componentCode = await processor.process(
             {
-                path: "test/samples/ComponentWithProps.jsx",
+                path: "test/samples/jsx-class/ComponentWithProps.jsx",
                 zeplinNames: []
             }
         );
@@ -45,7 +45,7 @@ describe("Connected Components React Plugin - PropTypes", () => {
 
         const componentCode = await processor.process(
             {
-                path: "test/samples/ComponentWithChildrenAndProps.jsx",
+                path: "test/samples/jsx-class/ComponentWithChildrenAndProps.jsx",
                 zeplinNames: []
             }
         );
@@ -58,7 +58,7 @@ describe("Connected Components React Plugin - PropTypes", () => {
 
         const componentCode = await processor.process(
             {
-                path: "test/samples/ComponentWithMemoization.jsx",
+                path: "test/samples/jsx-class/ComponentWithMemoization.jsx",
                 zeplinNames: []
             }
         );
