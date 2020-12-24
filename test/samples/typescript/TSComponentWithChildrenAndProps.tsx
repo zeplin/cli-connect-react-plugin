@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 interface OptionalType {};
 
@@ -34,5 +34,6 @@ export default class MyComponent extends React.Component<Props, {}> {
 
   render() {
     // ...
+    return void 0;
   }
 }

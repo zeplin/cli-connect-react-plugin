@@ -18,7 +18,23 @@ Run CLI `connect` command using the plugin.
 zeplin connect -p @zeplin/cli-connect-react-plugin
 ```
 
-Zeplin CLI React Plugin uses [react-docgen](https://github.com/reactjs/react-docgen) to analyze and collect information from React components. For more details about the supported formats, see `react-docgen` [guidelines](https://github.com/reactjs/react-docgen#guidelines-for-default-resolvers-and-handlers).
+Zeplin CLI React Plugin uses [react-docgen](https://github.com/reactjs/react-docgen) and [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript) to analyze and collect information from React components. For more details about the supported formats, see `react-docgen` [guidelines](https://github.com/reactjs/react-docgen#guidelines-for-default-resolvers-and-handlers) and `react-docgen-typescript` [examples](https://github.com/styleguidist/react-docgen-typescript#example).
+
+You can choose to use either `react-docgen` or `react-docgen-typescript` for TypeScript in your plugin configurations.
+
+```jsonc
+{
+    ...
+    "plugins" : [{
+        "name": "@zeplin/cli-connect-react-plugin",
+        "config": {
+            "tsDocgen": "react-docgen-typescript", // Uses react-docgen by default
+            "tsConfigPath": "/path/to/tsconfig.json" // Defaults to ./tsconfig.json
+        }
+    }],
+    ...
+}
+```
 
 ## About Connected Components
 
