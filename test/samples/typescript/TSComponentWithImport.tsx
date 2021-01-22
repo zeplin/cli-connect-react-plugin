@@ -14,6 +14,6 @@ export default class MyComponent extends OtherComponent {
 
   render() {
     // ...
-    return void 0;
+    return;
   }
 }

@@ -12,6 +12,6 @@ export default class MyComponent extends React.Component<OtherProps, {}> {
 
   render() {
     // ...
-    return void 0;
+    return;
   }
 }
