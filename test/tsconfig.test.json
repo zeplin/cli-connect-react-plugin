@@ -5,6 +5,7 @@
       "lib": ["es5", "es6", "dom"],
       "noImplicitAny": false,
       "esModuleInterop": true,
+      "resolveJsonModule": true,
       "sourceMap": true,
       "outDir": "lib",
       "jsx": "react"
