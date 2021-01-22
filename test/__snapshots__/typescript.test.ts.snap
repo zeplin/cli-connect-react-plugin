@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Connected Components React Plugin - TypeScript TSComponent.tsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - TypeScript Using react-docgen TSComponent.tsx snippet creation 1`] = `
 Object {
   "description": "General component description.",
   "lang": "tsx",
@@ -8,7 +8,7 @@ Object {
 }
 `;
 
-exports[`Connected Components React Plugin - TypeScript TSComponentWithChildren.tsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - TypeScript Using react-docgen TSComponentWithChildren.tsx snippet creation 1`] = `
 Object {
   "description": "General component description.",
   "lang": "tsx",
@@ -18,7 +18,7 @@ Object {
 }
 `;
 
-exports[`Connected Components React Plugin - TypeScript TSComponentWithChildrenAndProps.tsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - TypeScript Using react-docgen TSComponentWithChildrenAndProps.tsx snippet creation 1`] = `
 Object {
   "description": "General component description.",
   "lang": "tsx",
@@ -47,7 +47,18 @@ Object {
 }
 `;
 
-exports[`Connected Components React Plugin - TypeScript TSComponentWithProps.tsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - TypeScript Using react-docgen TSComponentWithImport.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "tsx",
+  "snippet": "<MyComponent
+  message={string}>
+  {children}
+</MyComponent>",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript Using react-docgen TSComponentWithProps.tsx snippet creation 1`] = `
 Object {
   "description": "General component description.",
   "lang": "tsx",
@@ -70,6 +81,75 @@ Object {
   onSomething={Function}
   onClick={(event: React.MouseEvent<HTMLButtonElement>) => void}
   onChange={(id: number) => void}
+  optional={OptionalType} />",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript Using react-docgen-typescript TSComponent.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "tsx",
+  "snippet": "<TSComponent />",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript Using react-docgen-typescript TSComponentWithChildren.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "tsx",
+  "snippet": "<TSComponentWithChildren />",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript Using react-docgen-typescript TSComponentWithChildrenAndProps.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "tsx",
+  "snippet": "<TSComponentWithChildrenAndProps
+  message={string}
+  count={number}
+  disabled={boolean}
+  names={string[]}
+  status={\\"waiting\\" | \\"success\\"}
+  obj={object}
+  obj2={{}}
+  obj3={{ id: string; title: string; }}
+  objArr={{ id: string; title: string; }[]}
+  onSomething={Function}
+  onClick={(event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; void}
+  hele={(event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; void}
+  onChange={(id: number) =&gt; void}
+  optional={OptionalType} />",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript Using react-docgen-typescript TSComponentWithImport.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "tsx",
+  "snippet": "<TSComponentWithImport
+  other={string}
+  message={string} />",
+}
+`;
+
+exports[`Connected Components React Plugin - TypeScript Using react-docgen-typescript TSComponentWithProps.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "tsx",
+  "snippet": "<TSComponentWithProps
+  message={string}
+  count={number}
+  disabled={boolean}
+  names={string[]}
+  status={\\"waiting\\" | \\"success\\"}
+  obj={object}
+  obj2={{}}
+  obj3={{ id: string; title: string; }}
+  objArr={{ id: string; title: string; }[]}
+  onSomething={Function}
+  onClick={(event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; void}
+  onChange={(id: number) =&gt; void}
   optional={OptionalType} />",
 }
 `;

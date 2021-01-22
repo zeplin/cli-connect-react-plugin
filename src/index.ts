@@ -1,28 +1,48 @@
-import { ConnectPlugin, ComponentConfig, ComponentData, PrismLang } from "@zeplin/cli";
+import {
+    ConnectPlugin, ComponentConfig, ComponentData, PrismLang, PluginContext
+} from "@zeplin/cli";
 import path from "path";
 import pug from "pug";
-import { readFile } from "fs-extra";
-import { parse, PreparedComponentDoc } from "react-docgen";
+import { readFile, pathExists } from "fs-extra";
+import { ComponentDoc, parse, PreparedComponentDoc, Props } from "react-docgen";
+import * as docgen from "react-docgen-typescript";
+
+interface ReactPluginConfig {
+    tsDocgen?: "react-docgen" | "react-docgen-typescript";
+    tsConfigPath?: string;
+}
 
 export default class implements ConnectPlugin {
     supportedFileExtensions = [".js", ".jsx", ".ts", ".tsx"];
     tsExtensions = [".ts", ".tsx"];
+    config: ReactPluginConfig = {};
 
     template = pug.compileFile(path.join(__dirname, "template/snippet.pug"));
 
-    async process(context: ComponentConfig): Promise<ComponentData> {
-        const file = await readFile(path.resolve(context.path));
+    // eslint-disable-next-line require-await
+    async init(pluginContext: PluginContext): Promise<void> {
+        this.config = pluginContext.config as unknown as ReactPluginConfig;
+    }
 
-        const rawReactDocs = parse(file, null, null, {
-            filename: path.resolve(context.path),
-            babelrc: false
-        });
+    async process(context: ComponentConfig): Promise<ComponentData> {
+        const filePath = path.resolve(context.path);
+
+        const file = await readFile(filePath);
+
+        let rawReactDocs: docgen.ComponentDoc | ComponentDoc;
+        let propsFilter: (props: docgen.Props | Props, name: string) => boolean;
+
+        if (this.config.tsDocgen === "react-docgen-typescript" && this.tsExtensions.includes(path.extname(filePath))) {
+            ({ rawReactDocs, propsFilter } = await this.parseUsingReactDocgenTypescript(filePath));
+        } else {
+            ({ rawReactDocs, propsFilter } = this.parseUsingReactDocgen(file, filePath));
+        }
 
         const rawProps = rawReactDocs.props || {};
 
         const props = Object.keys(rawProps)
             .filter(name => name !== "children")
-            .filter(name => rawProps[name].type || rawProps[name].tsType || rawProps[name].flowType)
+            .filter(name => propsFilter(rawProps, name))
             .map(name => ({ name, value: rawProps[name] }));
 
         const hasChildren = !!rawProps.children;
@@ -51,5 +71,54 @@ export default class implements ConnectPlugin {
 
     private generateSnippet(preparedComponentDoc: PreparedComponentDoc): string {
         return this.template(preparedComponentDoc);
+    }
+
+    private parseUsingReactDocgen(file: Buffer, filePath: string): {
+        rawReactDocs: ComponentDoc;
+        propsFilter: (props: docgen.Props | Props, name: string) => boolean;
+        } {
+        const rawReactDocs = parse(file, null, null, {
+            filename: filePath,
+            babelrc: false
+        });
+
+        const propsFilter = (props: Props, name: string): boolean =>
+            !!(props[name].type || props[name].tsType || props[name].flowType);
+
+        return {
+            rawReactDocs,
+            propsFilter
+        };
+    }
+
+    private async parseUsingReactDocgenTypescript(filePath: string): Promise <{
+        rawReactDocs: docgen.ComponentDoc;
+        propsFilter: (props: docgen.Props | Props, name: string) => boolean;
+        }> {
+        const tsConfigPath = path.resolve(this.config.tsConfigPath || "./tsconfig.json");
+
+        const parserOpts: docgen.ParserOptions = {
+            shouldExtractLiteralValuesFromEnum: true,
+            shouldRemoveUndefinedFromOptional: true,
+            propFilter: {
+                skipPropsWithoutDoc: false
+            }
+        };
+
+        let parser;
+
+        if (await pathExists(tsConfigPath)) {
+            parser = docgen.withCustomConfig(tsConfigPath, parserOpts);
+        } else {
+            parser = docgen.withDefaultConfig(parserOpts);
+        }
+        const [rawReactDocs] = parser.parse(filePath);
+
+        const propsFilter = (props: docgen.Props | Props, name: string): boolean => !!props[name].type;
+
+        return {
+            rawReactDocs,
+            propsFilter
+        };
     }
 }
