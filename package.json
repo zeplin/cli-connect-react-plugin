@@ -11,6 +11,9 @@
     "lint": "eslint --ext .js,.ts .",
     "prepare": "npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint"
