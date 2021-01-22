@@ -6,11 +6,22 @@ import pug from "pug";
 import { readFile, pathExists } from "fs-extra";
 import { ComponentDoc, parse, PreparedComponentDoc, Props } from "react-docgen";
 import * as docgen from "react-docgen-typescript";
+import updateNotifier from "update-notifier";
+import { name as packageName, version as packageVersion } from "../package.json";
 
 interface ReactPluginConfig {
     tsDocgen?: "react-docgen" | "react-docgen-typescript";
     tsConfigPath?: string;
 }
+
+updateNotifier({
+    pkg: {
+        name: packageName,
+        version: packageVersion
+    },
+    updateCheckInterval: 0,
+    shouldNotifyInNpmScript: true
+}).notify();
 
 export default class implements ConnectPlugin {
     supportedFileExtensions = [".js", ".jsx", ".ts", ".tsx"];

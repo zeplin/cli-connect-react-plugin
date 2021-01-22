@@ -74,7 +74,7 @@ describe("Connected Components React Plugin - TypeScript", () => {
 
             processor.config = {
                 tsDocgen: "react-docgen-typescript",
-                tsConfigPath: "./tsconfig.test.json"
+                tsConfigPath: "./test/tsconfig.test.json"
             };
 
             const componentCode = await processor.process(
@@ -92,7 +92,7 @@ describe("Connected Components React Plugin - TypeScript", () => {
 
             processor.config = {
                 tsDocgen: "react-docgen-typescript",
-                tsConfigPath: "./tsconfig.test.json"
+                tsConfigPath: "./test/tsconfig.test.json"
             };
 
             const componentCode = await processor.process(
@@ -110,7 +110,7 @@ describe("Connected Components React Plugin - TypeScript", () => {
 
             processor.config = {
                 tsDocgen: "react-docgen-typescript",
-                tsConfigPath: "./tsconfig.test.json"
+                tsConfigPath: "./test/tsconfig.test.json"
             };
 
             const componentCode = await processor.process(
@@ -128,7 +128,7 @@ describe("Connected Components React Plugin - TypeScript", () => {
 
             processor.config = {
                 tsDocgen: "react-docgen-typescript",
-                tsConfigPath: "./tsconfig.test.json"
+                tsConfigPath: "./test/tsconfig.test.json"
             };
 
             const componentCode = await processor.process(
@@ -146,7 +146,7 @@ describe("Connected Components React Plugin - TypeScript", () => {
 
             processor.config = {
                 tsDocgen: "react-docgen-typescript",
-                tsConfigPath: "./tsconfig.test.json"
+                tsConfigPath: "./test/tsconfig.test.json"
             };
 
             const componentCode = await processor.process(
