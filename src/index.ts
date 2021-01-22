@@ -5,9 +5,20 @@ import path from "path";
 import pug from "pug";
 import { readFile, pathExists } from "fs-extra";
 import { ComponentDoc, parse, PreparedComponentDoc, Props } from "react-docgen";
-import * as docgen from "react-docgen-typescript";
+import {
+    withCustomConfig,
+    withDefaultConfig,
+    ParserOptions as TSParserOptions,
+    Props as TSProps,
+    ComponentDoc as TSComponentDoc
+} from "react-docgen-typescript";
 import updateNotifier from "update-notifier";
 import { name as packageName, version as packageVersion } from "../package.json";
+
+let reactTsDocgen: {
+    withCustomConfig: typeof withCustomConfig;
+    withDefaultConfig: typeof withDefaultConfig;
+};
 
 interface ReactPluginConfig {
     tsDocgen: "react-docgen" | "react-docgen-typescript";
@@ -45,8 +56,8 @@ export default class implements ConnectPlugin {
 
         const file = await readFile(filePath);
 
-        let rawReactDocs: docgen.ComponentDoc | ComponentDoc;
-        let propsFilter: (props: docgen.Props | Props, name: string) => boolean;
+        let rawReactDocs: TSComponentDoc | ComponentDoc;
+        let propsFilter: (props: TSProps | Props, name: string) => boolean;
 
         if (this.config.tsDocgen === "react-docgen-typescript" && this.tsExtensions.includes(path.extname(filePath))) {
             this.logger?.debug(`Using react-docgen-typescript for ${filePath}`);
@@ -104,7 +115,7 @@ export default class implements ConnectPlugin {
 
     private parseUsingReactDocgen(file: Buffer, filePath: string): {
         rawReactDocs: ComponentDoc;
-        propsFilter: (props: docgen.Props | Props, name: string) => boolean;
+        propsFilter: (props: TSProps | Props, name: string) => boolean;
     } {
         const rawReactDocs = parse(file, null, null, {
             filename: filePath,
@@ -121,12 +132,12 @@ export default class implements ConnectPlugin {
     }
 
     private async parseUsingReactDocgenTypescript(filePath: string): Promise<{
-        rawReactDocs: docgen.ComponentDoc;
-        propsFilter: (props: docgen.Props | Props, name: string) => boolean;
+        rawReactDocs: TSComponentDoc;
+        propsFilter: (props: TSProps | Props, name: string) => boolean;
     }> {
         const tsConfigPath = path.resolve(this.config.tsConfigPath);
 
-        const parserOpts: docgen.ParserOptions = {
+        const parserOpts: TSParserOptions = {
             shouldExtractLiteralValuesFromEnum: true,
             shouldRemoveUndefinedFromOptional: true,
             propFilter: {
@@ -136,14 +147,19 @@ export default class implements ConnectPlugin {
 
         let parser;
 
+        if (!reactTsDocgen) {
+            this.logger?.debug("Importing react-docgen-typescript package");
+            reactTsDocgen = await import("react-docgen-typescript");
+        }
+
         if (await pathExists(tsConfigPath)) {
-            parser = docgen.withCustomConfig(tsConfigPath, parserOpts);
+            parser = reactTsDocgen.withCustomConfig(tsConfigPath, parserOpts);
         } else {
-            parser = docgen.withDefaultConfig(parserOpts);
+            parser = reactTsDocgen.withDefaultConfig(parserOpts);
         }
         const [rawReactDocs] = parser.parse(filePath);
 
-        const propsFilter = (props: docgen.Props | Props, name: string): boolean => !!props[name].type;
+        const propsFilter = (props: TSProps | Props, name: string): boolean => !!props[name].type;
 
         return {
             rawReactDocs,
