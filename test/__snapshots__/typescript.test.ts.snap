@@ -110,15 +110,15 @@ Object {
   count={number}
   disabled={boolean}
   names={string[]}
-  status={\\"waiting\\" | \\"success\\"}
+  status={'waiting' | 'success'}
   obj={object}
   obj2={{}}
   obj3={{ id: string; title: string; }}
   objArr={{ id: string; title: string; }[]}
   onSomething={Function}
-  onClick={(event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; void}
-  hele={(event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; void}
-  onChange={(id: number) =&gt; void}
+  onClick={(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void}
+  hele={(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void}
+  onChange={(id: number) => void}
   optional={OptionalType} />",
 }
 `;
@@ -142,14 +142,14 @@ Object {
   count={number}
   disabled={boolean}
   names={string[]}
-  status={\\"waiting\\" | \\"success\\"}
+  status={'waiting' | 'success'}
   obj={object}
   obj2={{}}
   obj3={{ id: string; title: string; }}
   objArr={{ id: string; title: string; }[]}
   onSomething={Function}
-  onClick={(event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; void}
-  onChange={(id: number) =&gt; void}
+  onClick={(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void}
+  onChange={(id: number) => void}
   optional={OptionalType} />",
 }
 `;

@@ -1,5 +1,5 @@
 import {
-    ConnectPlugin, ComponentConfig, ComponentData, PrismLang, PluginContext
+    ConnectPlugin, ComponentConfig, ComponentData, PrismLang, PluginContext, Logger
 } from "@zeplin/cli";
 import path from "path";
 import pug from "pug";
@@ -10,8 +10,8 @@ import updateNotifier from "update-notifier";
 import { name as packageName, version as packageVersion } from "../package.json";
 
 interface ReactPluginConfig {
-    tsDocgen?: "react-docgen" | "react-docgen-typescript";
-    tsConfigPath?: string;
+    tsDocgen: "react-docgen" | "react-docgen-typescript";
+    tsConfigPath: string;
 }
 
 updateNotifier({
@@ -26,13 +26,18 @@ updateNotifier({
 export default class implements ConnectPlugin {
     supportedFileExtensions = [".js", ".jsx", ".ts", ".tsx"];
     tsExtensions = [".ts", ".tsx"];
-    config: ReactPluginConfig = {};
+    logger?: Logger;
+    config: ReactPluginConfig = {
+        tsDocgen: "react-docgen",
+        tsConfigPath: "./tsconfig.json"
+    };
 
     template = pug.compileFile(path.join(__dirname, "template/snippet.pug"));
 
     // eslint-disable-next-line require-await
     async init(pluginContext: PluginContext): Promise<void> {
-        this.config = pluginContext.config as unknown as ReactPluginConfig;
+        Object.assign(this.config, pluginContext.config);
+        this.logger = pluginContext.logger;
     }
 
     async process(context: ComponentConfig): Promise<ComponentData> {
@@ -44,8 +49,10 @@ export default class implements ConnectPlugin {
         let propsFilter: (props: docgen.Props | Props, name: string) => boolean;
 
         if (this.config.tsDocgen === "react-docgen-typescript" && this.tsExtensions.includes(path.extname(filePath))) {
+            this.logger?.debug(`Using react-docgen-typescript for ${filePath}`);
             ({ rawReactDocs, propsFilter } = await this.parseUsingReactDocgenTypescript(filePath));
         } else {
+            this.logger?.debug(`Using react-docgen for ${filePath}`);
             ({ rawReactDocs, propsFilter } = this.parseUsingReactDocgen(file, filePath));
         }
 
@@ -54,7 +61,18 @@ export default class implements ConnectPlugin {
         const props = Object.keys(rawProps)
             .filter(name => name !== "children")
             .filter(name => propsFilter(rawProps, name))
-            .map(name => ({ name, value: rawProps[name] }));
+            .map(name => {
+                const prop = rawProps[name];
+                if (prop.type) {
+                    // Required to remove \" from typescript literal types
+                    prop.type.name = prop.type.name.replace(/"/g, "'");
+                    if ("raw" in prop.type && prop.type.raw) {
+                        prop.type.raw = prop.type.raw.replace(/"/g, "'");
+                    }
+                }
+
+                return { name, value: prop };
+            });
 
         const hasChildren = !!rawProps.children;
 
@@ -87,7 +105,7 @@ export default class implements ConnectPlugin {
     private parseUsingReactDocgen(file: Buffer, filePath: string): {
         rawReactDocs: ComponentDoc;
         propsFilter: (props: docgen.Props | Props, name: string) => boolean;
-        } {
+    } {
         const rawReactDocs = parse(file, null, null, {
             filename: filePath,
             babelrc: false
@@ -102,11 +120,11 @@ export default class implements ConnectPlugin {
         };
     }
 
-    private async parseUsingReactDocgenTypescript(filePath: string): Promise <{
+    private async parseUsingReactDocgenTypescript(filePath: string): Promise<{
         rawReactDocs: docgen.ComponentDoc;
         propsFilter: (props: docgen.Props | Props, name: string) => boolean;
-        }> {
-        const tsConfigPath = path.resolve(this.config.tsConfigPath || "./tsconfig.json");
+    }> {
+        const tsConfigPath = path.resolve(this.config.tsConfigPath);
 
         const parserOpts: docgen.ParserOptions = {
             shouldExtractLiteralValuesFromEnum: true,

@@ -1,7 +1,7 @@
 extends base
 
 block snippet
-    | <#{componentName}
+    | <!{componentName}
     if props.length > 0
         |
         |
@@ -13,6 +13,6 @@ block snippet
     if hasChildren
         | >
         |   {children}
-        | </#{componentName}>
+        | </!{componentName}>
     else
         |  />
