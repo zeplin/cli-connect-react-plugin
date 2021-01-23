@@ -1,4 +1,5 @@
 import Plugin from "../src";
+import { Logger } from "@zeplin/cli";
 
 describe("Connected Components React Plugin - PropTypes", () => {
     test("Component.jsx snippet creation", async () => {
@@ -59,6 +60,39 @@ describe("Connected Components React Plugin - PropTypes", () => {
         const componentCode = await processor.process(
             {
                 path: "test/samples/jsx-class/ComponentWithMemoization.jsx",
+                zeplinNames: []
+            }
+        );
+
+        expect(componentCode).toMatchSnapshot();
+    });
+
+    test("MultiExportComponentWithProps.jsx snippet creation", async () => {
+        const processor = new Plugin();
+
+        const componentCode = await processor.process(
+            {
+                path: "test/samples/jsx-class/MultiExportComponentWithProps.jsx",
+                zeplinNames: []
+            }
+        );
+
+        expect(componentCode).toMatchSnapshot();
+    });
+
+    test("ComponentWithChildrenAndProps.jsx snippet creation with single export resolver", async () => {
+        const processor = new Plugin();
+        await processor.init({
+            components: [],
+            logger: null as unknown as Logger,
+            config: {
+                reactDocgenResolver: "findExportedComponentDefinition"
+            }
+        });
+
+        const componentCode = await processor.process(
+            {
+                path: "test/samples/jsx-class/ComponentWithChildrenAndProps.jsx",
                 zeplinNames: []
             }
         );

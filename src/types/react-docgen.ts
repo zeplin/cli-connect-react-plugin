@@ -118,7 +118,7 @@ declare module "react-docgen" {
 
   // Just minimal type definition of the method to use it
   export function parse(src: string | Buffer,
-    resolver?: null,
+    resolver?: string | unknown,
     handlers?: null,
-    options?: { filename: string; babelrc: boolean }): ComponentDoc;
+    options?: { filename: string; babelrc: boolean }): ComponentDoc | ComponentDoc[];
 }

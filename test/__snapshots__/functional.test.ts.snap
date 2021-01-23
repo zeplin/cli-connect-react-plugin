@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Connected Components React Plugin - Functional ComponentWithChildren.jsx snippet creation 1`] = `
+exports[`Connected Components React Plugin - Functional FunctionalComponentWithChildren.jsx snippet creation 1`] = `
 Object {
   "description": "",
   "lang": "jsx",
@@ -15,5 +15,20 @@ Object {
   "description": "",
   "lang": "jsx",
   "snippet": "<MyComponent />",
+}
+`;
+
+exports[`Connected Components React Plugin - Functional MultiExportFunctionalComponentWithChildren.jsx snippet creation 1`] = `
+Object {
+  "description": "Component 1 description. Only this one should be shown",
+  "lang": "jsx",
+  "snippet": "<MyComponent1>
+  {children}
+</MyComponent1>
+
+<MyComponent2
+  someParameter={PropTypes.string.isRequired}>
+  {children}
+</MyComponent2>",
 }
 `;
