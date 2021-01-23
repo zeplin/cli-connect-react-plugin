@@ -1,5 +1,5 @@
 import Plugin from "../src";
-import { Logger } from "@zeplin/cli";
+import { logger } from "./helper/logger";
 
 describe("Connected Components React Plugin - PropTypes", () => {
     test("Component.jsx snippet creation", async () => {
@@ -84,7 +84,7 @@ describe("Connected Components React Plugin - PropTypes", () => {
         const processor = new Plugin();
         await processor.init({
             components: [],
-            logger: null as unknown as Logger,
+            logger,
             config: {
                 reactDocgenResolver: "findExportedComponentDefinition"
             }

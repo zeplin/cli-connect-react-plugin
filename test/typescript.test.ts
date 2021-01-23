@@ -1,9 +1,9 @@
 import Plugin from "../src";
-import { Logger } from "@zeplin/cli";
+import { logger } from "./helper/logger";
 
 const pluginContext = {
     components: [],
-    logger: null as unknown as Logger,
+    logger,
     config: {
         tsDocgen: "react-docgen-typescript",
         tsConfigPath: "./test/tsconfig.test.json"

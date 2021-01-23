@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 interface OptionalType {};
 
@@ -40,7 +40,7 @@ type Props2 = {
 export class MyComponent extends React.Component<Props1, {}> {
   props: Props1;
 
-  render() {
+  render(): ReactNode {
     // ...
     return;
   }
@@ -52,7 +52,7 @@ export class MyComponent extends React.Component<Props1, {}> {
 export class MyOtherComponent extends React.Component<Props2, {}> {
   props: Props2;
 
-  render() {
+  render(): ReactNode {
     // ...
     return;
   }
