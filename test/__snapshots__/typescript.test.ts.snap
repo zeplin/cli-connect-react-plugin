@@ -85,6 +85,36 @@ Object {
 }
 `;
 
+exports[`Connected Components React Plugin - TypeScript Using react-docgen-typescript MultiExportTSComponentWithProps.tsx snippet creation 1`] = `
+Object {
+  "description": "General component description.",
+  "lang": "tsx",
+  "snippet": "<MyComponent
+  message={string}
+  count={number}
+  disabled={boolean}
+  names={string[]}
+  status={'waiting' | 'success'}
+  obj={object}
+  obj2={{}}
+  obj3={{ id: string; title: string; }}
+  objArr={{ id: string; title: string; }[]}
+  onSomething={Function}
+  onClick={(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void}
+  onChange={(id: number) => void}
+  optional={OptionalType} />
+
+<MyOtherComponent
+  message={string}
+  count={number}
+  disabled={boolean}
+  names={string[]}
+  status={'waiting' | 'success'}
+  obj={object}
+  obj2={{}} />",
+}
+`;
+
 exports[`Connected Components React Plugin - TypeScript Using react-docgen-typescript TSComponent.tsx snippet creation 1`] = `
 Object {
   "description": "General component description.",

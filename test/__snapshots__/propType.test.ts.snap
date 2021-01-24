@@ -50,6 +50,38 @@ Object {
 }
 `;
 
+exports[`Connected Components React Plugin - PropTypes ComponentWithChildrenAndProps.jsx snippet creation with single export resolver 1`] = `
+Object {
+  "description": "Component description.",
+  "lang": "jsx",
+  "snippet": "<MyComponent
+  optionalArray={array}
+  optionalBool={bool}
+  optionalFunc={func}
+  optionalNumber={number}
+  optionalObject={object}
+  optionalString={string}
+  optionalSymbol={symbol}
+  optionalNode={node}
+  optionalElement={element}
+  optionalElementType={elementType}
+  optionalFoo={instanceOf(Foo)}
+  optionalEnum={enum}
+  optionalUnion={union[string|number|instanceOf(Foo)]}
+  optionalArrayOf={arrayOf[number]}
+  optionalObjectOf={objectOf[number]}
+  optionalObjectWithShape={shape}
+  optionalObjectWithStrictShape={exact}
+  requiredFunc={func}
+  requiredAny={any}
+  customProp={() => {}}
+  customArrayProp={arrayOf[custom]}
+  customObjectOfProp={objectOf[custom]}>
+  {children}
+</MyComponent>",
+}
+`;
+
 exports[`Connected Components React Plugin - PropTypes ComponentWithMemoization.jsx snippet creation 1`] = `
 Object {
   "description": "Component description.",
@@ -109,5 +141,44 @@ Object {
   customProp={() => {}}
   customArrayProp={arrayOf[custom]}
   customObjectOfProp={objectOf[custom]} />",
+}
+`;
+
+exports[`Connected Components React Plugin - PropTypes MultiExportComponentWithProps.jsx snippet creation 1`] = `
+Object {
+  "description": "Component 1 description. Only this one should be shown",
+  "lang": "jsx",
+  "snippet": "<MyComponent1
+  optionalArray={array}
+  optionalBool={bool}
+  optionalFunc={func}
+  optionalNumber={number}
+  optionalObject={object}
+  optionalString={string}
+  optionalSymbol={symbol}
+  optionalNode={node}
+  optionalElement={element}
+  optionalElementType={elementType}
+  optionalFoo={instanceOf(Foo)}
+  optionalEnum={enum}
+  optionalUnion={union[string|number|instanceOf(Foo)]}
+  optionalArrayOf={arrayOf[number]}
+  optionalObjectOf={objectOf[number]}
+  optionalObjectWithShape={shape}
+  optionalObjectWithStrictShape={exact}
+  requiredFunc={func}
+  requiredAny={any}
+  customProp={() => {}}
+  customArrayProp={arrayOf[custom]}
+  customObjectOfProp={objectOf[custom]} />
+
+<MyComponent2
+  optionalArray={array}
+  optionalBool={bool}
+  optionalFunc={func}
+  optionalNumber={number}
+  optionalObject={object}
+  optionalString={string}
+  optionalSymbol={symbol} />",
 }
 `;

@@ -52,4 +52,17 @@ describe("Connected Components React Plugin - Flow", () => {
 
         expect(componentCode).toMatchSnapshot();
     });
+
+    test("MultiExportFlowComponentWithProps.jsx snippet creation", async () => {
+        const processor = new Plugin();
+
+        const componentCode = await processor.process(
+            {
+                path: "test/samples/flow/MultiExportFlowComponentWithProps.jsx",
+                zeplinNames: []
+            }
+        );
+
+        expect(componentCode).toMatchSnapshot();
+    });
 });
