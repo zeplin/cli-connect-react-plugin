@@ -2,13 +2,16 @@
   "name": "@zeplin/cli-connect-react-plugin",
   "version": "0.2.8",
   "description": "Zeplin CLI Connected Components - React Plugin",
-  "main": "./dist/index",
+  "main": "./dist/src/index",
   "scripts": {
     "test": "jest",
-    "build": "tsc && copyfiles -u 1 src/template/** dist/",
+    "build": "tsc && copyfiles -u 1 src/template/** dist/src/",
     "lint": "eslint --ext .js,.ts .",
     "prepare": "npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint"
@@ -28,6 +31,7 @@
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.5",
     "@types/pug": "^2.0.4",
+    "@types/update-notifier": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
     "@zeplin/cli": "^1.0.4",
@@ -44,6 +48,7 @@
   "dependencies": {
     "fs-extra": "^9.0.0",
     "pug": "^2.0.4",
-    "react-docgen": "^5.3.1"
+    "react-docgen": "^5.3.1",
+    "update-notifier": "^5.0.1"
   }
 }

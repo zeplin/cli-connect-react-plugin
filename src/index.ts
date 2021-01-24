@@ -3,6 +3,17 @@ import path from "path";
 import pug from "pug";
 import { readFile } from "fs-extra";
 import { parse, PreparedComponentDoc } from "react-docgen";
+import { name as packageName, version as packageVersion } from "../package.json";
+import updateNotifier from "update-notifier";
+
+updateNotifier({
+    pkg: {
+        name: packageName,
+        version: packageVersion
+    },
+    updateCheckInterval: 0,
+    shouldNotifyInNpmScript: true
+}).notify();
 
 export default class implements ConnectPlugin {
     supportedFileExtensions = [".js", ".jsx", ".ts", ".tsx"];
