@@ -47,3 +47,22 @@ Object {
   obj={{ subvalue: boolean }} />",
 }
 `;
+
+exports[`Connected Components React Plugin - Flow MultiExportFlowComponentWithProps.jsx snippet creation 1`] = `
+Object {
+  "description": "Component 1 description. Only this one should be shown",
+  "lang": "jsx",
+  "snippet": "<MyComponent
+  primitive={number}
+  literalsAndUnion={'string' | 'otherstring' | number}
+  arr={Array<any>}
+  func={(value: string) => void}
+  noParameterName={string => void}
+  obj={{ subvalue: boolean }} />
+
+<MyOtherComponent
+  primitive={number}
+  literalsAndUnion={'string' | 'otherstring' | number}
+  arr={Array<any>} />",
+}
+`;

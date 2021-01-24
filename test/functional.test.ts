@@ -14,12 +14,25 @@ describe("Connected Components React Plugin - Functional", () => {
         expect(componentCode).toMatchSnapshot();
     });
 
-    test("ComponentWithChildren.jsx snippet creation", async () => {
+    test("FunctionalComponentWithChildren.jsx snippet creation", async () => {
         const processor = new Plugin();
 
         const componentCode = await processor.process(
             {
                 path: "test/samples/jsx-functional/FunctionalComponentWithChildren.jsx",
+                zeplinNames: []
+            }
+        );
+
+        expect(componentCode).toMatchSnapshot();
+    });
+
+    test("MultiExportFunctionalComponentWithChildren.jsx snippet creation", async () => {
+        const processor = new Plugin();
+
+        const componentCode = await processor.process(
+            {
+                path: "test/samples/jsx-functional/MultiExportFunctionalComponentWithChildren.jsx",
                 zeplinNames: []
             }
         );

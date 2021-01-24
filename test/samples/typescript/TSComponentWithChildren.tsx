@@ -12,5 +12,6 @@ export default class MyComponent extends React.Component<Props, {}> {
 
   render() {
     // ...
+    return;
   }
 }
