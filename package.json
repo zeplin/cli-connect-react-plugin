@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "fs-extra": "^9.0.1",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "react-docgen": "^5.3.1",
     "react-docgen-typescript": "^1.20.5",
     "update-notifier": "^5.0.1"
