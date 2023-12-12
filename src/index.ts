@@ -49,6 +49,7 @@ export default class implements ConnectPlugin {
         withCustomConfig: typeof withCustomConfig;
         withDefaultConfig: typeof withDefaultConfig;
     } | null = null;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     resolver = require(`react-docgen/dist/resolver/${defaultReactDocgenResolver}`).default
 
     template = pug.compileFile(path.join(__dirname, "template/snippet.pug"));
@@ -62,6 +63,7 @@ export default class implements ConnectPlugin {
             if (availableReactDocgenResolvers.includes(reactDocgenResolver) &&
                 reactDocgenResolver !== "findAllExportedComponentDefinitions") {
                 this.logger.debug(`Setting react-docgen resolver to ${reactDocgenResolver}`);
+                // eslint-disable-next-line @typescript-eslint/no-var-requires
                 this.resolver = require(`react-docgen/dist/resolver/${reactDocgenResolver}`).default;
             }
         }
